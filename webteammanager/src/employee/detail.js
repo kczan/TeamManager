@@ -14,11 +14,14 @@ export function Employee(props) {
       setActionTweet(newActionTweet);
     }
   };
-
+  const imgSrc = employee.image.split("?")[0];
   return (
     <div className={className}>
       <div className="d-flex flex-column justify-content-around border p-2 rounded w-100 m-4">
-        <div className="d-inline-block text-center pb-2">
+        <div className="d-flex m-3 justify-content-center">
+          <img src={imgSrc} width="150px" height="150px"></img>
+        </div>
+        <div className="d-inline-block text-center pb-2 font-weight-bold">
           {employee.first_name} {employee.last_name}
         </div>
         <div className="font-italic p-1">

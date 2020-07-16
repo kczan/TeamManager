@@ -30,6 +30,8 @@ class Employee(models.Model):
     position = models.CharField(blank=False, null=True, max_length=30)
     salary = models.IntegerField(blank=False)
     contact_number = models.IntegerField(blank=False)
+    image = models.ImageField(
+        default='profile_pic.jpg', upload_to='employee_photos')
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'

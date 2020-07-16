@@ -15,7 +15,7 @@ class EmployeeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Employee
         fields = ['employee_id', 'first_name', 'last_name', 'department', 'team',
-                  'position', 'salary', 'contact_number']
+                  'position', 'salary', 'contact_number', 'image']
 
     def get_employee_id(self, obj):
         return obj.employee_id
@@ -40,3 +40,7 @@ class EmployeeSerializer(serializers.ModelSerializer):
 
     def get_contact_number(self, obj):
         return obj.contact_number
+
+    def get_image(self, obj):
+        print(obj.image)
+        return obj.image
