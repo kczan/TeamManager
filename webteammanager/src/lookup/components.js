@@ -30,7 +30,6 @@ function getCookie(name) {
 export function apiLookup(method, endpoint, callback) {
   if (method === "GET") {
     api.get(`${endpoint}`).then((response) => {
-      console.log(response.data);
       callback(response.data, response.status);
     });
   }

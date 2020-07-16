@@ -1,18 +1,20 @@
-import { apiLookup } from "../lookup";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
-import { getEmployeeList } from "./lookup";
+import { apiGetEmployeeList } from "./lookup";
+import { Employee } from "./detail";
 
-export function EmployeesList(props) {
+export function EmployeesListComponent(props) {
   const [employeesInit, setEmployeesInit] = useState([]);
   const [employees, setEmployees] = useState([]);
   const [nextUrl, setNextUrl] = useState(null);
   const [employeesDidSet, setEmployeesDidSet] = useState(false);
 
   useEffect(() => {
-    const final = [...props.newEmployees].concat(employeesInit);
-    if (final.length !== employees.length) {
-      setEmployees(final);
+    if (props.newEmployees) {
+      const final = [...props.newEmployees].concat(employeesInit);
+      if (final.length !== employees.length) {
+        setEmployees(final);
+      }
     }
   }, [props.newEmployees, employeesInit, employees]);
 
@@ -36,7 +38,7 @@ export function EmployeesList(props) {
       const handleLoadNextResponse = (response, status) => {
         if (status === 200) {
           setNextUrl(response.next);
-          const newEmployees = [...tweets].concat(response.results);
+          const newEmployees = [...employees].concat(response.results);
           setEmployeesInit(newEmployees);
           setEmployees(newEmployees);
         }
@@ -47,9 +49,14 @@ export function EmployeesList(props) {
 
   return (
     <React.Fragment>
-      {employees.map((employee) => {
-        return <Tweet employee={employee} className="mx-3 py-1 my-3" />;
-      })}
+      <div className="d-flex flex-wrap">
+        {employees.map((employee) => {
+          return (
+            <Employee employee={employee} className="d-flex m-3 py-1 w-25" />
+          );
+        })}
+      </div>
+
       {nextUrl !== null && (
         <button onClick={handleLoadNext} className="btn btn-outline-primary">
           Load next
