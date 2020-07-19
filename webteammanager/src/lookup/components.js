@@ -27,10 +27,27 @@ function getCookie(name) {
   return cookieValue;
 }
 
-export function apiLookup(method, endpoint, callback) {
-  if (method === "GET") {
-    api.get(`${endpoint}`).then((response) => {
-      callback(response.data, response.status);
-    });
+export async function apiLookup(method, endpoint, callback, data) {
+  try {
+    if (method === "GET") {
+      api.get(`${endpoint}`).then((response) => {
+        callback(response.data, response.status);
+      });
+    } else if (method === "POST") {
+      axios(
+        {
+          method: "post",
+          url: `http://localhost:8000${endpoint}`,
+          data: data,
+        },
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+    }
+  } catch (error) {
+    console.log(error);
   }
 }

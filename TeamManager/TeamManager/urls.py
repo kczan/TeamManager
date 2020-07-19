@@ -16,12 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from employee.views import employee_add_form
+from employee.views import employee_add_form, EmployeeCreateView, employee_home_view
 
 
 urlpatterns = [
+    path('', employee_home_view, name='home'),
     path('admin/', admin.site.urls),
     path('api/employee/', include('employee.api.urls')),
-    path('add_form', employee_add_form)
+    path('add_form', employee_add_form),
+    path('create/', EmployeeCreateView.as_view(), name='create-employee')
 
 ]

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { apiGetEmployeeList } from "./lookup";
 import { Employee } from "./detail";
+import { EmployeeCreate } from "./addform";
 
 export function EmployeesListComponent(props) {
   const [employeesInit, setEmployeesInit] = useState([]);
@@ -63,5 +64,25 @@ export function EmployeesListComponent(props) {
         </button>
       )}
     </React.Fragment>
+  );
+}
+
+export function CreateEmployeeComponent(props) {
+  const [newEmployees, setNewEmployees] = useState([]);
+  const handleNewEmployee = (newEmployee) => {
+    let tempNewEmployees = [...newEmployees];
+    tempNewEmployees.unshift(newEmployee);
+    setNewEmployees(tempNewEmployees);
+  };
+  return (
+    <div className={props.className}>
+      <React.Fragment>
+        <EmployeeCreate
+          didAddEmployee={handleNewEmployee}
+          className="col-md-4 mx-auto d-flex p-2 justify-content-center"
+        />
+        <EmployeesListComponent newEmployees={newEmployees} {...props} />
+      </React.Fragment>
+    </div>
   );
 }

@@ -1,6 +1,9 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy
 
-from .forms import EmployeeForm
+
+from .forms import EmployeeModalForm, Employee
+from bootstrap_modal_forms.generic import BSModalCreateView
 # Create your views here.
 
 
@@ -28,3 +31,14 @@ def employee_add_form(request, *args, **kwargs):
     }
 
     return render(request, 'employee/form.html', context)
+
+
+def employee_home_view(request, *args, **kwargs):
+    return render(request, 'home.html', {})
+
+
+class EmployeeCreateView(BSModalCreateView):
+    template_name = 'employee/form.html'
+    form_class = EmployeeModalForm
+    success_message = "Employee added."
+    success_url = reverse_lazy('home')

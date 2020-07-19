@@ -3,7 +3,7 @@ from rest_framework.decorators import api_view
 from rest_framework.pagination import PageNumberPagination
 
 from ..models import Employee
-from ..serializers import EmployeeSerializer
+from ..serializers import EmployeeSerializer, EmployeeCreateSerializer
 
 EMPLOYEES_ON_SINGLE_PAGE = 40
 
@@ -34,3 +34,13 @@ def employee_list_api_view(request, *args, **kwargs):
     if employee_id != None:
         query_set = query_set.by_employee_id(employee_id)
     return get_paginated_queryset_response(query_set, request)
+
+
+@api_view(['POST'])
+def employee_create_api_view(request, *args, **kwargs):
+    print(request.data)
+    serializer = EmployeeCreateSerializer(data=request.data)
+    if serializer.is_valid(raise_exception=True):
+        serializer.save()
+        return Response(serializer.data, status=201)
+    return Response({}, status=400)

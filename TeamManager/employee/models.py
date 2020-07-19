@@ -22,14 +22,12 @@ class EmployeeQuerySet(models.QuerySet):
 
 
 class Employee(models.Model):
-    employee_id = models.IntegerField(blank=False, primary_key=True)
     first_name = models.CharField(blank=False, null=True, max_length=30)
     last_name = models.CharField(blank=False, null=True, max_length=30)
     department = models.CharField(blank=False, null=True, max_length=50)
-    team = models.CharField(blank=False, null=True, max_length=50)
     position = models.CharField(blank=False, null=True, max_length=30)
-    salary = models.IntegerField(blank=False)
-    contact_number = models.IntegerField(blank=False)
+    salary = models.CharField(blank=False, max_length=10)
+    contact_number = models.CharField(blank=False, max_length=10)
     image = models.ImageField(
         default='profile_pic.jpg', upload_to='employee_photos')
 

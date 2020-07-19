@@ -1,3 +1,3 @@
-import { EmployeesListComponent } from "./components";
+import { EmployeesListComponent, CreateEmployeeComponent } from "./components";
 
-export { EmployeesListComponent };
+export { EmployeesListComponent, CreateEmployeeComponent };
