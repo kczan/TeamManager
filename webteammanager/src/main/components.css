@@ -1,0 +1,8 @@
+.left-panel {
+  position: fixed;
+  top: 40%;
+  left: 1rem;
+  width: 10%;
+  transition: 0.4s ease;
+  height: 40%;
+}

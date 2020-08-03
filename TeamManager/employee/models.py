@@ -1,7 +1,5 @@
 from django.db import models
 
-# Create your models here.
-
 
 class EmployeeManager(models.Manager):
     def get_queryset(self):

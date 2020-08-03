@@ -10,7 +10,7 @@ export function EmployeeCreate(props) {
   const contactNumberRef = createRef();
   const imageRef = createRef();
 
-  const { didAddEmployee } = props;
+  const { didAddEmployee, onClick } = props;
   const handleBackendUpdate = (response, status) => {
     if (status === 201) {
       didAddEmployee(response);
@@ -31,10 +31,15 @@ export function EmployeeCreate(props) {
       contact_number: contactNumberRef.current.value,
       image: imageRef.current.files[0],
     };
+    console.log(newEmployee);
     apiCreateEmployee(handleBackendUpdate, newEmployee);
+    onClick();
+    setTimeout(function () {
+      window.location.reload();
+    }, 100);
   };
 
-  const fieldClass = "form-control w-75 p-2 my-2 mx-auto";
+  const fieldClass = "form-control w-75 p-2 my-2 mx-auto form-text-field";
 
   return (
     <div className={props.className}>

@@ -1,3 +1,4 @@
-import { EmployeesListComponent, CreateEmployeeComponent } from "./components";
+import { EmployeesListComponent } from "./components";
+import { EmployeeCreate } from "./addform";
 
-export { EmployeesListComponent, CreateEmployeeComponent };
+export { EmployeesListComponent, EmployeeCreate };
