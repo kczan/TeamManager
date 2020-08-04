@@ -4,7 +4,7 @@ from rest_framework.pagination import PageNumberPagination
 
 from ..models import Employee
 from ..serializers import EmployeeSerializer, EmployeeCreateSerializer
-
+from ..utilities import get_random_emp_values
 EMPLOYEES_ON_SINGLE_PAGE = 40
 
 
@@ -38,8 +38,18 @@ def employee_list_api_view(request, *args, **kwargs):
 
 @api_view(['POST'])
 def employee_create_api_view(request, *args, **kwargs):
-    print(request.data)
     serializer = EmployeeCreateSerializer(data=request.data)
+    if serializer.is_valid(raise_exception=True):
+        serializer.save()
+        return Response(serializer.data, status=201)
+    return Response({}, status=400)
+
+
+@api_view(['POST', 'GET'])
+def employee_create_random_api_view(request, *args, **kwargs):
+    data = get_random_emp_values()
+    print(data)
+    serializer = EmployeeCreateSerializer(data=data)
     if serializer.is_valid(raise_exception=True):
         serializer.save()
         return Response(serializer.data, status=201)

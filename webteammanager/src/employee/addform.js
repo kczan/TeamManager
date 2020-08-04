@@ -31,7 +31,6 @@ export function EmployeeCreate(props) {
       contact_number: contactNumberRef.current.value,
       image: imageRef.current.files[0],
     };
-    console.log(newEmployee);
     apiCreateEmployee(handleBackendUpdate, newEmployee);
     onClick();
     setTimeout(function () {

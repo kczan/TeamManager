@@ -2,8 +2,8 @@ import { apiLookup } from "../lookup";
 
 export async function apiGetEmployeeList(callback, nextUrl) {
   let endpoint = "/api/employee/list";
-  if (nextUrl) {
-    endpoint = nextUrl.replace("localhost:8000");
+  if (nextUrl !== null && nextUrl !== undefined) {
+    endpoint = nextUrl;
   }
   apiLookup("GET", endpoint, callback);
 }
@@ -21,6 +21,13 @@ export async function apiCreateEmployee(callback, data) {
     formData.append("image", data.image);
   }
 
-  console.log(formData);
   apiLookup("POST", endpoint, callback, formData);
+}
+
+export async function apiRandomEmployee(callback) {
+  let endpoint = "/api/employee/random-employee";
+  apiLookup("POST", endpoint, callback);
+  setTimeout(function () {
+    window.location.reload();
+  }, 100);
 }

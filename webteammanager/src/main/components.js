@@ -3,7 +3,7 @@ import SlidingPane from "react-sliding-pane";
 import Modal from "react-modal";
 import "react-sliding-pane/dist/react-sliding-pane.css";
 
-import { EmployeeCreate } from "../employee";
+import { EmployeeCreate, apiRandomEmployee } from "../employee";
 
 function PanelButton(props) {
   const { icon, id, onClick } = props;
@@ -66,7 +66,11 @@ export function SidePanel() {
         hideHeader={true}
       >
         <PanelButton icon="+" id="create-employee" onClick={openModal} />
-        <PanelButton icon="asd" id="random-employee" />
+        <PanelButton
+          icon="R"
+          id="random-employee"
+          onClick={apiRandomEmployee}
+        />
         <PanelButton icon="$" id="example-db" />
         <PanelButton icon="C" id="clear-employees" />
       </SlidingPane>
