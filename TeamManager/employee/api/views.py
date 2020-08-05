@@ -17,8 +17,8 @@ def get_paginated_queryset_response(qs, request, *args, **kwargs):
 
 
 @api_view(['GET'])
-def employee_detail_api_view(request, employee_id, *args, **kwargs):
-    qs = Employee.objects.filter(employee_id=employee_id)
+def employee_detail_api_view(request, id, *args, **kwargs):
+    qs = Employee.objects.filter(id=id)
     if not qs.exists():
         return Response({"detail": "Employee not found"}, status=404)
     employee_obj = qs.first()
@@ -45,7 +45,7 @@ def employee_create_api_view(request, *args, **kwargs):
     return Response({}, status=400)
 
 
-@api_view(['POST', 'GET'])
+@api_view(['GET'])
 def employee_create_random_api_view(request, *args, **kwargs):
     data = get_random_emp_values()
     print(data)
@@ -54,3 +54,16 @@ def employee_create_random_api_view(request, *args, **kwargs):
         serializer.save()
         return Response(serializer.data, status=201)
     return Response({}, status=400)
+
+
+@api_view(["DELETE"])
+def employee_delete_api_view(request, id, *args, **kwargs):
+    emp_to_delete = Employee.objects.filter(id=id)
+    print(emp_to_delete)
+    print("delete view")
+    if emp_to_delete:
+        emp_to_delete.delete()
+        return Response({}, status=200)
+    else:
+        print("Error occured while deleting employee info.")
+    return Response({}, status=404)

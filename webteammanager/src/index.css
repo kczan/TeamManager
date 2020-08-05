@@ -65,3 +65,27 @@ code {
   border-radius: 5px;
   outline: none;
 }
+
+.delete-employee-button {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  color: #fff;
+  border: 1px solid #aeaeae;
+  border-radius: 30px;
+  background-color: crimson;
+  font-weight: bold;
+  line-height: 0px;
+  padding: 3px 3px;
+  text-align: center;
+  justify-content: center;
+  box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.5);
+  visibility: hidden;
+  transition: opacity 0.3s linear;
+  opacity: 0;
+}
+
+.employee-card:hover .delete-employee-button {
+  visibility: visible;
+  opacity: 1;
+}

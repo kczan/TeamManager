@@ -1,15 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
+import { apiDeleteEmployee } from "./lookup";
 
 export function Employee(props) {
   const className = props.className
     ? props.className
     : "col-10 mx-auto col-md-6 bg-light";
   const { employee } = props;
+  const [deleteEmployee, didDeleteEmployee] = useState(false);
+
+  const handleDelete = () => {
+    apiDeleteEmployee(handleBackendUpdate, employee.id);
+
+    console.log(employee);
+  };
+
+  const handleBackendUpdate = (response, status) => {
+    if ((status = 200)) {
+      didDeleteEmployee(true);
+    } else {
+      alert("Error occured while deleting employee info");
+    }
+  };
 
   const imgSrc = employee.image.split("?")[0];
   return (
     <div className={className}>
-      <div className="d-flex flex-column justify-content-around border p-2 rounded w-100 m-4">
+      <div className="d-flex flex-column justify-content-around border p-2 rounded w-100 m-4 employee-card">
+        <button className="delete-employee-button" onClick={handleDelete}>
+          X
+        </button>
         <div className="d-flex m-3 justify-content-center ">
           <img
             src={imgSrc}

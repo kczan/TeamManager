@@ -45,6 +45,8 @@ export async function apiLookup(method, endpoint, callback, data) {
           },
         }
       );
+    } else if (method === "DELETE") {
+      axios.delete(`http://localhost:8000${endpoint}`);
     }
   } catch (error) {
     console.log(error);

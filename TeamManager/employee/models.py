@@ -20,6 +20,7 @@ class EmployeeQuerySet(models.QuerySet):
 
 
 class Employee(models.Model):
+    id = models.AutoField(primary_key=True)
     first_name = models.CharField(blank=False, null=True, max_length=30)
     last_name = models.CharField(blank=False, null=True, max_length=30)
     department = models.CharField(blank=False, null=True, max_length=50)

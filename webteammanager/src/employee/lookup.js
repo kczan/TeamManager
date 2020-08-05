@@ -31,3 +31,11 @@ export async function apiRandomEmployee(callback) {
     window.location.reload();
   }, 100);
 }
+
+export async function apiDeleteEmployee(callback, id) {
+  let endpoint = `/api/employee/delete-employee/${id}`;
+  apiLookup("DELETE", endpoint, callback);
+  setTimeout(function () {
+    window.location.reload();
+  }, 100);
+}

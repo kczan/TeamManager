@@ -13,8 +13,11 @@ class EmployeeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Employee
-        fields = ['first_name', 'last_name', 'department',
+        fields = ['id', 'first_name', 'last_name', 'department',
                   'position', 'salary', 'contact_number', 'image']
+
+    def get_id(self, obj):
+        return obj.id
 
     def get_first_name(self, obj):
         return obj.first_name
