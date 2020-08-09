@@ -8,6 +8,12 @@ export async function apiGetEmployeeList(callback, nextUrl) {
   apiLookup("GET", endpoint, callback);
 }
 
+export async function apiGetSalaryStats(callback) {
+  let endpoint = "/api/employee/get-stats";
+
+  apiLookup("GET", endpoint, callback);
+}
+
 export async function apiCreateEmployee(callback, data) {
   let endpoint = "/api/employee/create-employee";
   let formData = new FormData();

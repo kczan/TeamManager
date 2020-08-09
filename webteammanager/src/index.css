@@ -141,3 +141,15 @@ code {
 .ReactModal__Overlay--before-close {
   opacity: 0;
 }
+
+.chart-div {
+  height: 500px;
+  margin: 10vw 5vw;
+}
+
+@media only screen and (max-width: 600px) {
+  .top-panel {
+    left: 5%;
+    width: 40% !important;
+  }
+}

@@ -41,10 +41,6 @@ export function TopPanel() {
     window.location = `http://localhost:8000/search/${input.value}`;
   }
 
-  function redirectHome() {
-    window.location = "http://localhost:8000";
-  }
-
   return (
     <div>
       <div
@@ -63,9 +59,19 @@ export function TopPanel() {
         onRequestClose={() => setState({ isPaneOpenTop: false })}
         hideHeader={true}
       >
-        <PanelButton icon="Home" onClick={redirectHome} />
+        <PanelButton
+          icon="Home"
+          onClick={() => {
+            window.location = "http://localhost:8000";
+          }}
+        />
         <PanelButton icon="S" id="create-employee" onClick={openModal} />
-        <PanelButton icon="X" />
+        <PanelButton
+          icon="Stats"
+          onClick={() => {
+            window.location = "http://localhost:8000/stats";
+          }}
+        />
         <PanelButton icon="X" />
       </SlidingPane>
       <div>

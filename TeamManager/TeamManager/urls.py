@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from employee.views import employee_add_form, EmployeeCreateView, employee_home_view, employee_search_view
+from employee.views import employee_add_form, EmployeeCreateView, employee_home_view, employee_search_view, employee_stats_view
 
 
 urlpatterns = [
@@ -26,4 +26,5 @@ urlpatterns = [
     path('add_form', employee_add_form),
     path('create/', EmployeeCreateView.as_view(), name='create-employee'),
     path('search/<str:keyword>', employee_search_view),
+    path('stats', employee_stats_view, name='stats'),
 ]

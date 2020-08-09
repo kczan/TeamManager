@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 
-import { EmployeesListComponent, SearchResults } from "./employee";
+import { EmployeesListComponent, SearchResults, Stats } from "./employee";
 import { SidePanel, TopPanel } from "./main";
 
 const reactElement = React.createElement;
@@ -37,6 +37,12 @@ const searchElement = document.getElementById("employee-search-results");
 if (searchElement) {
   const MySearchComponent = reactElement(SearchResults, searchElement.dataset);
   ReactDOM.render(MySearchComponent, searchElement);
+}
+
+const statsElement = document.getElementById("chartdiv");
+if (statsElement) {
+  const MyStatsComponent = reactElement(Stats, statsElement.dataset);
+  ReactDOM.render(MyStatsComponent, statsElement);
 }
 
 // If you want your app to work offline and load faster, you can change

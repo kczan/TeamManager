@@ -5,6 +5,7 @@ from rest_framework.pagination import PageNumberPagination
 from ..models import Employee
 from ..serializers import EmployeeSerializer, EmployeeCreateSerializer
 from ..utilities import get_random_emp_values
+from collections import Counter
 EMPLOYEES_ON_SINGLE_PAGE = 40
 
 
@@ -25,6 +26,21 @@ def employee_detail_api_view(request, id, *args, **kwargs):
     serializer = EmployeeSerializer(
         instance=employee_obj, context={"request": request})
     return Response(serializer.data, status=200)
+
+
+@api_view(['GET'])
+def get_salary_stats_api_view(request, *args, **kwargs):
+    qs = Employee.objects.all()
+    salary_list = []
+    output = []
+    for emp in qs:
+        salary_list.append(int(emp.salary))
+    salary_list.sort()
+    data = Counter(salary_list)
+    for pair in data.items():
+        output.append({"salary": pair[0],
+                       "value": pair[1]})
+    return Response(output, status=200)
 
 
 @api_view(['GET'])

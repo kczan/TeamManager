@@ -44,6 +44,10 @@ def employee_search_view(request, keyword, *args, **kwargs):
     return render(request, 'employee/search.html', context)
 
 
+def employee_stats_view(request, *args, **kwargs):
+    return render(request, 'employee/stats.html', {})
+
+
 class EmployeeCreateView(BSModalCreateView):
     template_name = 'employee/form.html'
     form_class = EmployeeModalForm
