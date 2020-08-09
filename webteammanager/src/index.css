@@ -40,11 +40,38 @@ code {
   background-color: var(--panel-bg-color);
   border-top-right-radius: 15px !important;
   border-bottom-right-radius: 15px !important;
+  flex-direction: column;
+}
+
+.top-panel-trigger {
+  display: flex;
+  position: fixed;
+  top: 2%;
+  left: 48%;
+  width: 60px;
+  height: 60px;
+  border-radius: 15px;
+  border: 0.5rem;
+  background-color: var(--panel-bg-color);
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.top-panel {
+  position: fixed;
+  left: 36.5%;
+  top: -1.5%;
+  width: 40%;
+  height: 15% !important;
+  background-color: var(--panel-bg-color);
+  border-bottom-left-radius: 15px !important;
+  border-bottom-right-radius: 15px !important;
 }
 
 .slide-pane__content {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   background-color: var(--panel-bg-color);
   border-top-right-radius: 15px !important;
   border-bottom-right-radius: 15px !important;
@@ -88,4 +115,29 @@ code {
 .employee-card:hover .delete-employee-button {
   visibility: visible;
   opacity: 1;
+}
+
+.slide-pane_from_top {
+  height: 90vh;
+  margin-bottom: 10vh;
+  transform: translateY(-100%);
+}
+.slide-pane_from_top.ReactModal__Content--after-open {
+  transform: translateY(0%);
+}
+.slide-pane_from_top.ReactModal__Content--before-close {
+  transform: translateY(-100%);
+}
+
+.ReactModal__Overlay {
+  opacity: 0;
+  transition: all 500ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
 }

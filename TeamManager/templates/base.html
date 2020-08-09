@@ -24,6 +24,8 @@
         <div class="modal-content"></div>
       </div>
     </div>
+    <div id="sidebar" data-load-form-src="{% static '/js/loadForm.js' %}"></div>
+    <div id="topBar"></div>
     {% block content %}{% endblock content %}
     <div></div>
     {% include 'react/base_embed.html'%} {% include 'react/js.html' %}

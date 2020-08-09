@@ -1,3 +1,4 @@
-import { SidePanel } from "./components";
+import { SidePanel } from "./sideBar";
+import { TopPanel } from "./topPanel";
 
-export { SidePanel };
+export { SidePanel, TopPanel };

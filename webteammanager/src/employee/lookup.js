@@ -39,3 +39,11 @@ export async function apiDeleteEmployee(callback, id) {
     window.location.reload();
   }, 100);
 }
+
+export async function apiSearchResults(callback, keyword, nextUrl) {
+  let endpoint = `/api/employee/search/${keyword}`;
+  if (nextUrl !== null && nextUrl !== undefined) {
+    endpoint = nextUrl;
+  }
+  apiLookup("GET", endpoint, callback);
+}

@@ -21,8 +21,13 @@ export function Employee(props) {
       alert("Error occured while deleting employee info");
     }
   };
+  let imgSrc;
+  if (employee) {
+    imgSrc = employee.image.split("?")[0];
+  } else {
+    imgSrc = "";
+  }
 
-  const imgSrc = employee.image.split("?")[0];
   return (
     <div className={className}>
       <div className="d-flex flex-column justify-content-around border p-2 rounded w-100 m-4 employee-card">

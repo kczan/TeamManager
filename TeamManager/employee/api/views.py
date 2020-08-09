@@ -45,10 +45,9 @@ def employee_create_api_view(request, *args, **kwargs):
     return Response({}, status=400)
 
 
-@api_view(['GET'])
+@api_view(['GET', 'POST'])
 def employee_create_random_api_view(request, *args, **kwargs):
     data = get_random_emp_values()
-    print(data)
     serializer = EmployeeCreateSerializer(data=data)
     if serializer.is_valid(raise_exception=True):
         serializer.save()
@@ -67,3 +66,12 @@ def employee_delete_api_view(request, id, *args, **kwargs):
     else:
         print("Error occured while deleting employee info.")
     return Response({}, status=404)
+
+
+@api_view(['GET', 'POST'])
+def employee_search_api_view(request, keyword, *args, **kwargs):
+    if keyword is not None:
+        query_set = Employee.objects.search(query=keyword)
+    else:
+        raise Http404('Keyword not provided.')
+    return get_paginated_queryset_response(query_set, request)

@@ -37,6 +37,13 @@ def employee_home_view(request, *args, **kwargs):
     return render(request, 'home.html', {})
 
 
+def employee_search_view(request, keyword, *args, **kwargs):
+    context = {
+        "keyword": keyword
+    }
+    return render(request, 'employee/search.html', context)
+
+
 class EmployeeCreateView(BSModalCreateView):
     template_name = 'employee/form.html'
     form_class = EmployeeModalForm

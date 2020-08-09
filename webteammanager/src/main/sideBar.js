@@ -5,7 +5,7 @@ import "react-sliding-pane/dist/react-sliding-pane.css";
 
 import { EmployeeCreate, apiRandomEmployee } from "../employee";
 
-function PanelButton(props) {
+export function PanelButton(props) {
   const { icon, id, onClick } = props;
   return (
     <button className="panel-button" id={id} onClick={onClick}>
