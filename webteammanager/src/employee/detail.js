@@ -4,7 +4,7 @@ import { apiDeleteEmployee } from "./lookup";
 export function Employee(props) {
   const className = props.className
     ? props.className
-    : "col-10 mx-auto col-md-6 bg-light";
+    : "col-10 mx-auto col-md-6";
   const { employee } = props;
   const [deleteEmployee, didDeleteEmployee] = useState(false);
 

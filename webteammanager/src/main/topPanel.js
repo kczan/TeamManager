@@ -13,19 +13,6 @@ export function TopPanel() {
     isOpen: false,
   });
 
-  const customStyles = {
-    content: {
-      top: "20%",
-      left: "50%",
-      right: "auto",
-      bottom: "auto",
-      transform: "translate(-50%, -50%)",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      flexDirection: "column",
-    },
-  };
   function openModal() {
     setModalIsOpen(true);
   }
@@ -78,8 +65,8 @@ export function TopPanel() {
         <Modal
           isOpen={modalIsOpen}
           onRequestClose={closeModal}
-          style={customStyles}
           contentLabel="Search for employees"
+          className="search-box"
         >
           <form className="p-1 d-flex" onSubmit={handleSearchSubmit}>
             <input

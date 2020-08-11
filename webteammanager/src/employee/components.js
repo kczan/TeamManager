@@ -49,10 +49,13 @@ export function EmployeesListComponent(props) {
 
   return (
     <React.Fragment>
-      <div className="d-flex flex-wrap ml-5 my-5">
+      <div className="d-flex flex-wrap ml-3 my-5">
         {employees.map((employee) => {
           return (
-            <Employee employee={employee} className="d-flex m-3 py-1 w-25" />
+            <Employee
+              employee={employee}
+              className="d-flex my-3 py-1 employee-container"
+            />
           );
         })}
       </div>

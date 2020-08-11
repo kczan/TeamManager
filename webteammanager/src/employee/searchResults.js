@@ -47,7 +47,12 @@ export function SearchResults(props) {
   return (
     <React.Fragment>
       {employeesInit.map((employee) => {
-        return <Employee employee={employee} />;
+        return (
+          <Employee
+            employee={employee}
+            className="d-flex my-3 py-1 employee-container"
+          />
+        );
       })}
       {nextUrl !== null && (
         <button onClick={handleLoadNext} className="btn btn-outline-primary">
