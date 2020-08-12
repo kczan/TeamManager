@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 from employee.views import employee_add_form, EmployeeCreateView, employee_home_view, employee_search_view, employee_stats_view
-
+from .views import about_view
 
 urlpatterns = [
     path('', employee_home_view, name='home'),
@@ -27,4 +27,5 @@ urlpatterns = [
     path('create/', EmployeeCreateView.as_view(), name='create-employee'),
     path('search/<str:keyword>', employee_search_view),
     path('stats', employee_stats_view, name='stats'),
+    path('about', about_view, name='about'),
 ]

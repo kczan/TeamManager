@@ -4,7 +4,7 @@ import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 
 import { EmployeesListComponent, SearchResults, Stats } from "./employee";
-import { SidePanel, TopPanel } from "./main";
+import { SidePanel, TopPanel, About } from "./main";
 
 const reactElement = React.createElement;
 
@@ -43,6 +43,12 @@ const statsElement = document.getElementById("chartdiv");
 if (statsElement) {
   const MyStatsComponent = reactElement(Stats, statsElement.dataset);
   ReactDOM.render(MyStatsComponent, statsElement);
+}
+
+const aboutElement = document.getElementById("about");
+if (aboutElement) {
+  const MyAboutComponent = reactElement(About, aboutElement.dataset);
+  ReactDOM.render(MyAboutComponent, aboutElement);
 }
 
 // If you want your app to work offline and load faster, you can change

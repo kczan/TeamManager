@@ -4,15 +4,7 @@ import Modal from "react-modal";
 import "react-sliding-pane/dist/react-sliding-pane.css";
 
 import { EmployeeCreate, apiRandomEmployee } from "../employee";
-
-export function PanelButton(props) {
-  const { icon, id, onClick } = props;
-  return (
-    <button className="panel-button" id={id} onClick={onClick}>
-      {icon}
-    </button>
-  );
-}
+import { PanelButton } from "./panelButton";
 
 export function SidePanel() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -65,9 +57,13 @@ export function SidePanel() {
         onRequestClose={() => setState({ isPaneOpenLeft: false })}
         hideHeader={true}
       >
-        <PanelButton icon="+" id="create-employee" onClick={openModal} />
         <PanelButton
-          icon="R"
+          icon="faUserPlus"
+          id="create-employee"
+          onClick={openModal}
+        />
+        <PanelButton
+          icon="faRandom"
           id="random-employee"
           onClick={apiRandomEmployee}
         />

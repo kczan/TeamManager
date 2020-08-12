@@ -3,7 +3,7 @@ import SlidingPane from "react-sliding-pane";
 import Modal from "react-modal";
 import "react-sliding-pane/dist/react-sliding-pane.css";
 
-import { PanelButton } from "./sideBar";
+import { PanelButton } from "./panelButton";
 
 export function TopPanel() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -47,19 +47,25 @@ export function TopPanel() {
         hideHeader={true}
       >
         <PanelButton
-          icon="Home"
+          icon="faUserTie"
           onClick={() => {
             window.location = "http://localhost:8000";
           }}
         />
-        <PanelButton icon="S" id="create-employee" onClick={openModal} />
+        <PanelButton id="search-employee" onClick={openModal} icon="faSearch" />
+
         <PanelButton
-          icon="Stats"
+          icon="faChartBar"
           onClick={() => {
             window.location = "http://localhost:8000/stats";
           }}
         />
-        <PanelButton icon="X" />
+        <PanelButton
+          icon="faAt"
+          onClick={() => {
+            window.location = "http://localhost:8000/about";
+          }}
+        />
       </SlidingPane>
       <div>
         <Modal
