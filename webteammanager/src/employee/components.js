@@ -9,6 +9,8 @@ export function EmployeesListComponent(props) {
   const [nextUrl, setNextUrl] = useState(null);
   const [employeesDidSet, setEmployeesDidSet] = useState(false);
 
+  const { department } = props;
+
   useEffect(() => {
     if (props.newEmployees) {
       const final = [...props.newEmployees].concat(employeesInit);
@@ -28,9 +30,9 @@ export function EmployeesListComponent(props) {
           setEmployees(response.results);
         }
       };
-      apiGetEmployeeList(handleEmployeeRefresh);
+      apiGetEmployeeList(handleEmployeeRefresh, (department = department));
     }
-  }, [employeesInit, setEmployeesDidSet, employeesDidSet]);
+  }, [employeesInit, setEmployeesDidSet, employeesDidSet, department]);
 
   const handleLoadNext = (event) => {
     event.preventDefault();

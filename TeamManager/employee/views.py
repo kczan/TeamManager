@@ -34,7 +34,10 @@ def employee_add_form(request, *args, **kwargs):
 
 
 def employee_home_view(request, *args, **kwargs):
-    return render(request, 'home.html', {})
+    context = {
+        "title": "Team Manager"
+    }
+    return render(request, 'home.html', context)
 
 
 def employee_search_view(request, keyword, *args, **kwargs):
@@ -45,7 +48,10 @@ def employee_search_view(request, keyword, *args, **kwargs):
 
 
 def employee_stats_view(request, *args, **kwargs):
-    return render(request, 'employee/stats.html', {})
+    context = {
+        "title": "Company statistics"
+    }
+    return render(request, 'employee/stats.html', context)
 
 
 class EmployeeCreateView(BSModalCreateView):

@@ -9,7 +9,13 @@ export async function apiGetEmployeeList(callback, nextUrl) {
 }
 
 export async function apiGetSalaryStats(callback) {
-  let endpoint = "/api/employee/get-stats";
+  let endpoint = "/api/employee/get-salary-stats";
+
+  apiLookup("GET", endpoint, callback);
+}
+
+export async function apiGetDepartmentStats(callback) {
+  let endpoint = "/api/employee/get-department-stats";
 
   apiLookup("GET", endpoint, callback);
 }

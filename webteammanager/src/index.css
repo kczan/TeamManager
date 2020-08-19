@@ -29,7 +29,6 @@ code {
   box-shadow: 0 8px 8px rgba(0, 0, 0, 0.5);
   justify-content: center;
   align-items: center;
-  z-index: 99;
 }
 
 .left-panel {
@@ -46,8 +45,12 @@ code {
 
 .top-panel-trigger {
   display: flex;
-  margin: 1vh auto;
-  z-index: 99;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0.5rem;
+  margin: 0 auto;
+  overflow: hidden;
   width: 60px;
   height: 60px;
   border-radius: 15px;
@@ -63,7 +66,10 @@ code {
   margin-top: -1rem;
   top: -1.5%;
   width: 40%;
-  height: 15% !important;
+  /* height: 15% !important; */
+  height: fit-content;
+  max-height: 17%;
+
   background-color: var(--panel-bg-color);
   border-bottom-left-radius: 15px !important;
   border-bottom-right-radius: 15px !important;

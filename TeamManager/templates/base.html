@@ -15,10 +15,15 @@
     <script src="{% static 'assets/js/jquery-3.2.1.min.js' %}"></script>
     <script src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"></script>
     <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="{% static 'favicon.ico' %}"
+    />
     <!-- disable for production -->
     <title>{{ title }}</title>
   </head>
-  <body>
+  <body class="py-2">
     <div class="modal fade" tabindex="-1" role="dialog" id="modal">
       <div class="modal-dialog" role="document">
         <div class="modal-content"></div>

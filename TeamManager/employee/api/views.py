@@ -44,6 +44,21 @@ def get_salary_stats_api_view(request, *args, **kwargs):
 
 
 @api_view(['GET'])
+def get_department_stats_api_view(request, *args, **kwargs):
+    qs = Employee.objects.all()
+    department_list = []
+    output = []
+    for emp in qs:
+        department_list.append(emp.department)
+    department_list.sort()
+    data = Counter(department_list)
+    for pair in data.items():
+        output.append({"department": pair[0],
+                       "value": pair[1]})
+    return Response(output, status=200)
+
+
+@api_view(['GET'])
 def employee_list_api_view(request, *args, **kwargs):
     query_set = Employee.objects.all()
     employee_id = request.GET.get('employee_id')

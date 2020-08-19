@@ -3,7 +3,12 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 
-import { EmployeesListComponent, SearchResults, Stats } from "./employee";
+import {
+  EmployeesListComponent,
+  SearchResults,
+  SalaryStats,
+  DepartmentStats,
+} from "./employee";
 import { SidePanel, TopPanel, About } from "./main";
 
 const reactElement = React.createElement;
@@ -39,10 +44,22 @@ if (searchElement) {
   ReactDOM.render(MySearchComponent, searchElement);
 }
 
-const statsElement = document.getElementById("chartdiv");
-if (statsElement) {
-  const MyStatsComponent = reactElement(Stats, statsElement.dataset);
-  ReactDOM.render(MyStatsComponent, statsElement);
+const salaryStatsElement = document.getElementById("chartdiv1");
+if (salaryStatsElement) {
+  const MySalaryStatsComponent = reactElement(
+    SalaryStats,
+    salaryStatsElement.dataset
+  );
+  ReactDOM.render(MySalaryStatsComponent, salaryStatsElement);
+}
+
+const departmentStatsElement = document.getElementById("chartdiv2");
+if (departmentStatsElement) {
+  const MyDepartmentStatsComponent = reactElement(
+    DepartmentStats,
+    departmentStatsElement.dataset
+  );
+  ReactDOM.render(MyDepartmentStatsComponent, departmentStatsElement);
 }
 
 const aboutElement = document.getElementById("about");
