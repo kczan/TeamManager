@@ -37,25 +37,37 @@ export function Employee(props) {
         <div className="d-flex m-3 justify-content-center ">
           <img
             src={imgSrc}
-            width="150px"
-            height="150px"
-            className="rounded-circle"
+            className="rounded-circle emp-photo"
             alt={`${employee.first_name}${employee.last_name}`}
           ></img>
         </div>
-        <div className="d-inline-block text-center pb-2 font-weight-bold">
-          {employee.first_name} {employee.last_name}
+        <div className="d-inline-block text-center font-weight-bold pt-1">
+          <h5>
+            {employee.first_name} {employee.last_name}
+          </h5>
         </div>
-        <div className="font-italic p-1">
+        <div className="font-weight-light px-1 text-center">
           {employee.position} in {employee.department} Department
         </div>
-        <div className="p-1">Salary: {employee.salary}</div>
-        <div className="bg-light border rounded p-3 text-center">
-          Contact:
-          <div>Phone number: {employee.contact_number} </div>
-          <div>
-            Email: {(employee.first_name[0] + employee.last_name).toLowerCase()}
-            @wuphf.com
+        <hr className="w-75" />
+        <div className="p-2 d-flex justify-content-between">
+          <span className="font-weight-bold">Salary</span>{" "}
+          <span className="text-align-right font-weight-light">
+            ${employee.salary}
+          </span>
+        </div>
+        <div className="p-2 d-flex justify-content-between align-items-start">
+          <span className="font-weight-bold">Contact</span>{" "}
+          <div className="d-flex flex-column text-right font-weight-light">
+            {" "}
+            <div> &#9742; {employee.contact_number} </div>
+            <div>
+              <p className="text-nowrap">
+                &#9993;
+                {(employee.first_name[0] + employee.last_name).toLowerCase()}
+                @wuphf.com
+              </p>
+            </div>
           </div>
         </div>
       </div>

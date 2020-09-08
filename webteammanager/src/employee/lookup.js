@@ -1,10 +1,16 @@
 import { apiLookup } from "../lookup";
 
-export async function apiGetEmployeeList(callback, nextUrl) {
+export async function apiGetEmployeeList(callback, nextUrl, department) {
   let endpoint = "/api/employee/list";
+
   if (nextUrl !== null && nextUrl !== undefined) {
     endpoint = nextUrl;
   }
+  apiLookup("GET", endpoint, callback);
+}
+
+export async function apiGetDepartments(callback) {
+  let endpoint = "/api/employee/departments";
   apiLookup("GET", endpoint, callback);
 }
 

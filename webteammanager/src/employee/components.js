@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { apiGetEmployeeList } from "./lookup";
+import { apiGetEmployeeList, apiGetDepartments } from "./lookup";
 import { Employee } from "./detail";
 
 export function EmployeesListComponent(props) {
@@ -9,7 +9,10 @@ export function EmployeesListComponent(props) {
   const [nextUrl, setNextUrl] = useState(null);
   const [employeesDidSet, setEmployeesDidSet] = useState(false);
 
-  const { department } = props;
+  let department = "";
+  if (props.department) {
+    department = props.department;
+  }
 
   useEffect(() => {
     if (props.newEmployees) {
@@ -30,7 +33,7 @@ export function EmployeesListComponent(props) {
           setEmployees(response.results);
         }
       };
-      apiGetEmployeeList(handleEmployeeRefresh, (department = department));
+      apiGetEmployeeList(handleEmployeeRefresh);
     }
   }, [employeesInit, setEmployeesDidSet, employeesDidSet, department]);
 

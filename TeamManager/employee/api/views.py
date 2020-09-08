@@ -59,8 +59,23 @@ def get_department_stats_api_view(request, *args, **kwargs):
 
 
 @api_view(['GET'])
-def employee_list_api_view(request, *args, **kwargs):
-    query_set = Employee.objects.all()
+def get_departments_api_view(request, *args, **kwargs):
+    qs = Employee.objects.all()
+    department_list = []
+    output = []
+    for emp in qs:
+        if (emp.department not in department_list):
+            department_list.append(emp.department)
+    department_list.sort()
+    return Response(department_list, status=200)
+
+
+@api_view(['GET'])
+def employee_list_api_view(request, department=None, *args, **kwargs):
+    if department is not None:
+        query_set = Employee.objects.filter(department=department)
+    else:
+        query_set = Employee.objects.all()
     employee_id = request.GET.get('employee_id')
     if employee_id != None:
         query_set = query_set.by_employee_id(employee_id)

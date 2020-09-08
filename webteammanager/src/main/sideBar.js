@@ -3,6 +3,9 @@ import SlidingPane from "react-sliding-pane";
 import Modal from "react-modal";
 import "react-sliding-pane/dist/react-sliding-pane.css";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import * as Icons from "@fortawesome/free-solid-svg-icons";
+
 import { EmployeeCreate, apiRandomEmployee } from "../employee";
 import { PanelButton } from "./panelButton";
 
@@ -46,7 +49,7 @@ export function SidePanel() {
         onMouseEnter={() => setState({ isPaneOpenLeft: true })}
         onClick={() => setState({ isPaneOpenLeft: true })}
       >
-        +
+        <FontAwesomeIcon icon={Icons.faChevronCircleRight} />
       </div>
 
       <SlidingPane

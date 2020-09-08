@@ -3,6 +3,9 @@ import SlidingPane from "react-sliding-pane";
 import Modal from "react-modal";
 import "react-sliding-pane/dist/react-sliding-pane.css";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import * as Icons from "@fortawesome/free-solid-svg-icons";
+
 import { PanelButton } from "./panelButton";
 
 export function TopPanel() {
@@ -35,7 +38,7 @@ export function TopPanel() {
         onMouseEnter={() => setState({ isPaneOpenTop: true })}
         onClick={() => setState({ isPaneOpenTop: true })}
       >
-        +
+        <FontAwesomeIcon icon={Icons.faChevronCircleDown} />
       </div>
 
       <SlidingPane
