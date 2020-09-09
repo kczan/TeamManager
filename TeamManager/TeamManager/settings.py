@@ -27,11 +27,11 @@ SECRET_KEY = os.environ.get('TEAM_MANAGER_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = int(os.environ.get('DEBUG', default=1))
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0',
+                 'https://fc-teammanager.herokuapp.com/']
 
 # Change for production
-BASE_URL = 'http://localhost:8000'
-
+BASE_URL = 'https://fc-teammanager.herokuapp.com/'
 
 # Application definition
 

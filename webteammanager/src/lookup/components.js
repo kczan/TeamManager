@@ -2,8 +2,10 @@ import axios from "axios";
 
 const csrftoken = getCookie("csrftoken");
 
+const baseURL = "https://fc-teammanager.herokuapp.com";
+
 const api = axios.create({
-  baseURL: `http://localhost:8000`,
+  baseURL: baseURL,
   headers: {
     "X-CSRFToken": csrftoken,
   },
@@ -36,7 +38,7 @@ export async function apiLookup(method, endpoint, callback, data) {
       axios(
         {
           method: "post",
-          url: `http://localhost:8000${endpoint}`,
+          url: `${baseURL}${endpoint}`,
           data: data,
         },
         {
@@ -46,7 +48,7 @@ export async function apiLookup(method, endpoint, callback, data) {
         }
       );
     } else if (method === "DELETE") {
-      axios.delete(`http://localhost:8000${endpoint}`);
+      axios.delete(`${baseURL}${endpoint}`);
     }
   } catch (error) {
     console.log(error);
