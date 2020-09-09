@@ -30,7 +30,7 @@ export function TopPanel() {
   function handleSearchSubmit(e) {
     e.preventDefault();
     const input = document.getElementById("search-bar");
-    window.location = `${baseURL}${input.value}`;
+    window.location = `${baseURL}search/${input.value}`;
   }
 
   return (
