@@ -1,1 +1,1 @@
-web: gunicorn TeamManager.TeamManager.wsgi --log-file -
+web: gunicorn TeamManager.wsgi --log-file -
