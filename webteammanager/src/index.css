@@ -113,7 +113,7 @@ code {
   padding: 3px 3px;
   text-align: center;
   justify-content: center;
-  box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
   visibility: hidden;
   transition: opacity 0.3s linear;
   opacity: 0;
@@ -153,6 +153,7 @@ code {
 .chart-div {
   height: 500px;
   margin: 10vw 5vw;
+  width: 100%;
 }
 
 .employee-container {

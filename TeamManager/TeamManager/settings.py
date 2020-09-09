@@ -21,12 +21,13 @@ MAX_TEXT_LENGTH = 50
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'az%x=$dqwg*_wsc4_*q*7lo0u1(5q)thgbs7^qasyw%(90l7)o'
+SECRET_KEY = os.environ.get('TEAM_MANAGER_SECRET_KEY')
+# SECRET_KEY = "az%x=$dqwg*_wsc4_*q*7lo0u1(5q)thgbs7^qasyw%(90l7)o"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = int(os.environ.get('DEBUG', default=1))
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0']
 
 # Change for production
 BASE_URL = 'http://localhost:8000'
@@ -88,13 +89,30 @@ WSGI_APPLICATION = 'TeamManager.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
+try:
+    DATABASE_PASSWORD = os.environ.get('POSTGRES_PASSWORD')
+    DATABASE_USER = os.environ.get('POSTGRES_USER')
+    DATABASE_NAME = os.environ.get('POSTGRES_DB')
+except:
+    print('Could not get environment variables')
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': os.environ.get('DB_ENGINE', 'django.db.backends.sqlite3'),
+        'NAME': os.environ.get('DB_DATABASE_NAME', os.path.join(BASE_DIR, 'db.sqlite3')),
+        'USER': os.environ.get('DB_USERNAME', 'user'),
+        'PASSWORD': os.environ.get('DB_PASSWORD', 'password'),
+        'HOST': os.environ.get('DB_HOST', 'localhost'),
+        'PORT': os.environ.get('DB_PORT', '5432')
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
