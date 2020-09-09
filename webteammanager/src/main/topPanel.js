@@ -8,6 +8,8 @@ import * as Icons from "@fortawesome/free-solid-svg-icons";
 
 import { PanelButton } from "./panelButton";
 
+const baseURL = "https://fc-teammanager.herokuapp.com/";
+
 export function TopPanel() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -28,7 +30,7 @@ export function TopPanel() {
   function handleSearchSubmit(e) {
     e.preventDefault();
     const input = document.getElementById("search-bar");
-    window.location = `http://localhost:8000/search/${input.value}`;
+    window.location = `${baseURL}${input.value}`;
   }
 
   return (
@@ -52,7 +54,7 @@ export function TopPanel() {
         <PanelButton
           icon="faUserTie"
           onClick={() => {
-            window.location = "http://localhost:8000";
+            window.location = `${baseURL}`;
           }}
         />
         <PanelButton id="search-employee" onClick={openModal} icon="faSearch" />
@@ -60,13 +62,13 @@ export function TopPanel() {
         <PanelButton
           icon="faChartBar"
           onClick={() => {
-            window.location = "http://localhost:8000/stats";
+            window.location = `${baseURL}stats`;
           }}
         />
         <PanelButton
           icon="faAt"
           onClick={() => {
-            window.location = "http://localhost:8000/about";
+            window.location = `${baseURL}about`;
           }}
         />
       </SlidingPane>
