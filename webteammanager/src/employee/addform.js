@@ -1,5 +1,30 @@
-import React, { createRef } from "react";
+import React, { createRef, useState } from "react";
 import { apiCreateEmployee } from "./lookup";
+import ImageUploader from "react-images-upload";
+
+export function ImageUpload(props) {
+  const { handleDrop } = props;
+  const fieldClass =
+    "d-flex p-2 my-2 mx-auto form-text-field file-upload-section";
+
+  const handleImage = (picture) => {
+    handleDrop(picture);
+  };
+
+  return (
+    <ImageUploader
+      {...props}
+      withIcon={false}
+      onChange={handleImage}
+      imgExtension={[".jpg", ".png", ".jpeg"]}
+      maxFileSize={52428800}
+      className={fieldClass}
+      label={"Max file size: 320kB."}
+      buttonText={"Choose image"}
+      withPreview={true}
+    />
+  );
+}
 
 export function EmployeeCreate(props) {
   const firstNameRef = createRef();
@@ -8,9 +33,10 @@ export function EmployeeCreate(props) {
   const positionRef = createRef();
   const salaryRef = createRef();
   const contactNumberRef = createRef();
-  const imageRef = createRef();
 
   const { didAddEmployee, onClick } = props;
+  const [pictures, setPictures] = useState([]);
+
   const handleBackendUpdate = (response, status) => {
     if (status === 201) {
       didAddEmployee(response);
@@ -18,6 +44,11 @@ export function EmployeeCreate(props) {
       console.log(response);
       alert("An error occured, please try again");
     }
+  };
+
+  const handleDrop = (picture) => {
+    setPictures(picture);
+    console.log(picture);
   };
 
   const handleSubmit = (event) => {
@@ -29,7 +60,7 @@ export function EmployeeCreate(props) {
       position: positionRef.current.value,
       salary: salaryRef.current.value,
       contact_number: contactNumberRef.current.value,
-      image: imageRef.current.files[0],
+      image: pictures[0],
     };
     apiCreateEmployee(handleBackendUpdate, newEmployee);
     onClick();
@@ -46,55 +77,65 @@ export function EmployeeCreate(props) {
         className="w-100 d-flex justify-content-center flex-column align-content-around mx-auto"
         onSubmit={handleSubmit}
       >
-        <textarea
+        <input
           ref={firstNameRef}
           required={true}
+          type="text"
           className={fieldClass}
           name="first_name"
           placeholder="First name"
-        ></textarea>
-        <textarea
+        ></input>
+        <input
           ref={lastNameRef}
+          type="text"
           required={true}
           className={fieldClass}
           name="last_name"
           placeholder="Last name"
-        ></textarea>
-        <textarea
+        ></input>
+        <input
           ref={departmentRef}
+          type="text"
           required={true}
           className={fieldClass}
           name="department"
           placeholder="Department"
-        ></textarea>
-        <textarea
+        ></input>
+
+        <input
           ref={positionRef}
           required={true}
           className={fieldClass}
+          type="text"
           name="position"
           placeholder="Position"
-        ></textarea>
-        <textarea
+        ></input>
+        <input
           ref={salaryRef}
           required={true}
           className={fieldClass}
           name="salary"
           placeholder="Salary"
-        ></textarea>
-        <textarea
+          type="number"
+          maxLength={8}
+        ></input>
+        <input
           ref={contactNumberRef}
           required={true}
+          type="tel"
           className={fieldClass}
           name="contact_number"
           placeholder="Contact number"
-        ></textarea>
-        <input
-          type="file"
-          ref={imageRef}
-          required={false}
-          className={fieldClass}
-          placeholder="Photo"
+          maxLength={10}
         ></input>
+
+        <div
+          className={
+            "d-flex flex-column align-items-stretch mx-auto border rounded mt-2 justify-content-around w-75"
+          }
+        >
+          <ImageUpload handleDrop={handleDrop} />
+        </div>
 
         <button type="submit" className="btn btn-primary my-3 w-50 mx-auto">
           Add new employee

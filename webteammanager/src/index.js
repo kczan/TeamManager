@@ -8,6 +8,7 @@ import {
   SearchResults,
   SalaryStats,
   DepartmentStats,
+  ImageUpload,
 } from "./employee";
 import { SidePanel, TopPanel, About } from "./main";
 
@@ -66,6 +67,12 @@ const aboutElement = document.getElementById("about");
 if (aboutElement) {
   const MyAboutComponent = reactElement(About, aboutElement.dataset);
   ReactDOM.render(MyAboutComponent, aboutElement);
+}
+
+const uploadElement = document.getElementById("fileupload");
+if (uploadElement) {
+  const MyUploadComponent = reactElement(ImageUpload, uploadElement.dataset);
+  ReactDOM.render(MyUploadComponent, uploadElement);
 }
 
 // If you want your app to work offline and load faster, you can change

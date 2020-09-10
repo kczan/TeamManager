@@ -1,5 +1,5 @@
 import { EmployeesListComponent } from "./components";
-import { EmployeeCreate } from "./addform";
+import { EmployeeCreate, ImageUpload } from "./addform";
 import { apiRandomEmployee } from "./lookup";
 import { SearchResults } from "./searchResults";
 import { SalaryStats, DepartmentStats } from "./stats";
@@ -11,4 +11,5 @@ export {
   SearchResults,
   SalaryStats,
   DepartmentStats,
+  ImageUpload,
 };

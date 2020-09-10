@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { apiGetEmployeeList, apiGetDepartments } from "./lookup";
+import { apiGetEmployeeList } from "./lookup";
 import { Employee } from "./detail";
 
 export function EmployeesListComponent(props) {
