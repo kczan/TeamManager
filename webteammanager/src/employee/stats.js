@@ -116,7 +116,7 @@ export function DepartmentStats() {
     x.cursor.lineX.disabled = true;
 
     let title = x.titles.create();
-    title.text = "No. of employees in each department";
+    title.text = "Employees in each department";
     title.fontSize = 25;
     title.tooltipText = "No. of employees in each department";
 
