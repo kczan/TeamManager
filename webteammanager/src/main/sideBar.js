@@ -13,6 +13,7 @@ export function SidePanel() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const [newEmployees, setNewEmployees] = useState([]);
+
   const handleNewEmployee = (newEmployee) => {
     let tempNewEmployees = [...newEmployees];
     tempNewEmployees.unshift(newEmployee);

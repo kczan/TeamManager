@@ -1,33 +1,8 @@
 import React, { createRef, useState } from "react";
-import { apiCreateEmployee } from "./lookup";
-import ImageUploader from "react-images-upload";
+import { apiEditEmployee } from "./lookup";
+import { ImageUpload } from "./addform";
 
-export function ImageUpload(props) {
-  const { handleDrop } = props;
-  const fieldClass =
-    "d-flex p-2 my-2 mx-auto form-text-field file-upload-section";
-
-  const handleImage = (picture) => {
-    handleDrop(picture);
-  };
-
-  return (
-    <ImageUploader
-      {...props}
-      withIcon={false}
-      onChange={handleImage}
-      imgExtension={[".jpg", ".png", ".jpeg"]}
-      maxFileSize={52428800}
-      className={fieldClass}
-      label={"Max file size: 320kB."}
-      buttonText={"Choose image"}
-      withPreview={true}
-      singleImage={true}
-    />
-  );
-}
-
-export function EmployeeCreate(props) {
+export function EmployeeEdit(props) {
   const firstNameRef = createRef();
   const lastNameRef = createRef();
   const departmentRef = createRef();
@@ -35,12 +10,12 @@ export function EmployeeCreate(props) {
   const salaryRef = createRef();
   const contactNumberRef = createRef();
 
-  const { didAddEmployee, onClick } = props;
+  const { didEditEmployee, onClick, employee } = props;
   const [pictures, setPictures] = useState([]);
 
   const handleBackendUpdate = (response, status) => {
     if (status === 201) {
-      didAddEmployee(response);
+      didEditEmployee(response);
     } else {
       console.log(response);
       alert("An error occured, please try again");
@@ -54,6 +29,7 @@ export function EmployeeCreate(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const newEmployee = {
+      id: employee.id,
       first_name: firstNameRef.current.value,
       last_name: lastNameRef.current.value,
       department: departmentRef.current.value,
@@ -62,7 +38,7 @@ export function EmployeeCreate(props) {
       contact_number: contactNumberRef.current.value,
       image: pictures[0],
     };
-    apiCreateEmployee(handleBackendUpdate, newEmployee);
+    apiEditEmployee(handleBackendUpdate, newEmployee, employee.id);
     onClick();
     setTimeout(function () {
       window.location.reload();
@@ -78,12 +54,14 @@ export function EmployeeCreate(props) {
         onSubmit={handleSubmit}
       >
         <input
+          id="first-name-input"
           ref={firstNameRef}
           required={true}
           type="text"
           className={fieldClass}
           name="first_name"
           placeholder="First name"
+          defaultValue={employee.first_name}
         ></input>
         <input
           ref={lastNameRef}
@@ -92,6 +70,7 @@ export function EmployeeCreate(props) {
           className={fieldClass}
           name="last_name"
           placeholder="Last name"
+          defaultValue={employee.last_name}
         ></input>
         <input
           ref={departmentRef}
@@ -100,6 +79,7 @@ export function EmployeeCreate(props) {
           className={fieldClass}
           name="department"
           placeholder="Department"
+          defaultValue={employee.department}
         ></input>
 
         <input
@@ -109,6 +89,7 @@ export function EmployeeCreate(props) {
           type="text"
           name="position"
           placeholder="Position"
+          defaultValue={employee.position}
         ></input>
         <input
           ref={salaryRef}
@@ -118,6 +99,7 @@ export function EmployeeCreate(props) {
           placeholder="Salary"
           type="number"
           maxLength={8}
+          defaultValue={employee.salary}
         ></input>
         <input
           ref={contactNumberRef}
@@ -127,6 +109,7 @@ export function EmployeeCreate(props) {
           name="contact_number"
           placeholder="Contact number"
           maxLength={10}
+          defaultValue={employee.contact_number}
         ></input>
 
         <div
@@ -138,7 +121,7 @@ export function EmployeeCreate(props) {
         </div>
 
         <button type="submit" className="btn btn-primary my-3 w-50 mx-auto">
-          Add new employee
+          Confirm changes
         </button>
       </form>
     </div>

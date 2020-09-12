@@ -119,9 +119,36 @@ code {
   opacity: 0;
 }
 
+.edit-employee-button {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  border: 1px solid #aeaeae;
+  border-radius: 30px;
+  background-color: slategray;
+  /* line-height: 0px; */
+  /* padding: 5px 5px; */
+  text-align: center;
+  justify-content: center;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  visibility: hidden;
+  transition: opacity 0.3s linear;
+  opacity: 0;
+}
+
 .employee-card:hover .delete-employee-button {
   visibility: visible;
   opacity: 1;
+}
+
+.employee-card:hover .edit-employee-button {
+  visibility: visible;
+  opacity: 1;
+}
+
+.employee-buttons {
+  display: flex;
+  justify-content: space-between;
 }
 
 .slide-pane_from_top {

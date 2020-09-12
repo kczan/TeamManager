@@ -1,6 +1,7 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.generics import UpdateAPIView
 
 from ..models import Employee
 from ..serializers import EmployeeSerializer, EmployeeCreateSerializer
@@ -20,6 +21,7 @@ def get_paginated_queryset_response(qs, request, *args, **kwargs):
 @api_view(['GET'])
 def employee_detail_api_view(request, id, *args, **kwargs):
     qs = Employee.objects.filter(id=id)
+    print(qs)
     if not qs.exists():
         return Response({"detail": "Employee not found"}, status=404)
     employee_obj = qs.first()
@@ -87,6 +89,17 @@ def employee_create_api_view(request, *args, **kwargs):
     serializer = EmployeeCreateSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):
         serializer.save()
+        return Response(serializer.data, status=201)
+    return Response({}, status=400)
+
+
+@api_view(['POST', 'GET'])
+def employee_edit_api_view(request, id, *args, **kwargs):
+    qs = Employee.objects.filter(id=id)
+    serializer = EmployeeSerializer(data=request.data)
+    if serializer.is_valid(raise_exception=True):
+        validated_data = request.data
+        serializer.update(qs[0], validated_data)
         return Response(serializer.data, status=201)
     return Response({}, status=400)
 

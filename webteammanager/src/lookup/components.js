@@ -3,6 +3,7 @@ import axios from "axios";
 const csrftoken = getCookie("csrftoken");
 
 const baseURL = "https://fc-teammanager.herokuapp.com";
+// const baseURL = "http://localhost:8000";
 
 const api = axios.create({
   baseURL: baseURL,

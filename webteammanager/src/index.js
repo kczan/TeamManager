@@ -9,6 +9,7 @@ import {
   SalaryStats,
   DepartmentStats,
   ImageUpload,
+  EmployeeEdit,
 } from "./employee";
 import { SidePanel, TopPanel, About } from "./main";
 
@@ -73,6 +74,12 @@ const uploadElement = document.getElementById("fileupload");
 if (uploadElement) {
   const MyUploadComponent = reactElement(ImageUpload, uploadElement.dataset);
   ReactDOM.render(MyUploadComponent, uploadElement);
+}
+
+const editElement = document.getElementById("edit-employee-form");
+if (editElement) {
+  const MyEditComponent = reactElement(EmployeeEdit, editElement.dataset);
+  ReactDOM.render(MyEditComponent, editElement);
 }
 
 // If you want your app to work offline and load faster, you can change

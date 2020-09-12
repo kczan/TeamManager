@@ -58,6 +58,7 @@ export function EmployeesListComponent(props) {
         {employees.map((employee) => {
           return (
             <Employee
+              key={employee.id}
               employee={employee}
               className="d-flex my-3 py-1 employee-container"
             />

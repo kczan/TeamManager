@@ -1,21 +1,34 @@
 import React, { useState } from "react";
 import { apiDeleteEmployee } from "./lookup";
+import { EmployeeEdit } from "./editform";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import * as Icons from "@fortawesome/free-solid-svg-icons";
+
+import Modal from "react-modal";
 
 export function Employee(props) {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const className = props.className
     ? props.className
     : "col-10 mx-auto col-md-6";
   const { employee } = props;
   const [deleteEmployee, didDeleteEmployee] = useState(false);
+  const [newEmployees, setNewEmployees] = useState([]);
+
+  function openModal() {
+    setModalIsOpen(true);
+  }
+
+  function closeModal() {
+    setModalIsOpen(false);
+  }
 
   const handleDelete = () => {
     apiDeleteEmployee(handleBackendUpdate, employee.id);
-
-    console.log(employee);
   };
 
   const handleBackendUpdate = (response, status) => {
-    if ((status = 200)) {
+    if (status === 200) {
       didDeleteEmployee(true);
     } else {
       alert("Error occured while deleting employee info");
@@ -28,12 +41,24 @@ export function Employee(props) {
     imgSrc = "";
   }
 
+  const handleNewEmployee = (newEmployee) => {
+    let tempNewEmployees = [...newEmployees];
+    tempNewEmployees.unshift(newEmployee);
+    setNewEmployees(tempNewEmployees);
+  };
+
   return (
     <div className={className}>
       <div className="d-flex flex-column justify-content-around border p-2 rounded w-100 m-4 employee-card">
-        <button className="delete-employee-button" onClick={handleDelete}>
-          X
-        </button>
+        <div className="employee-buttons">
+          <button className="delete-employee-button" onClick={handleDelete}>
+            X
+          </button>
+          <button className="edit-employee-button" onClick={openModal}>
+            <FontAwesomeIcon icon={Icons.faUserEdit} />
+          </button>
+        </div>
+
         <div className="d-flex m-3 justify-content-center ">
           <img
             src={imgSrc}
@@ -71,6 +96,24 @@ export function Employee(props) {
           </div>
         </div>
       </div>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        className="Modal"
+        contentLabel="Edit employee"
+      >
+        <EmployeeEdit
+          didEditEmployee={handleNewEmployee}
+          onClick={closeModal}
+          employee={employee}
+        />
+        <button
+          className="btn btn-secondary mx-auto px-auto"
+          onClick={closeModal}
+        >
+          Close
+        </button>
+      </Modal>
     </div>
   );
 }

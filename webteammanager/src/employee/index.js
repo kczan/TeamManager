@@ -3,6 +3,7 @@ import { EmployeeCreate, ImageUpload } from "./addform";
 import { apiRandomEmployee } from "./lookup";
 import { SearchResults } from "./searchResults";
 import { SalaryStats, DepartmentStats } from "./stats";
+import { EmployeeEdit } from "./editform";
 
 export {
   EmployeesListComponent,
@@ -12,4 +13,5 @@ export {
   SalaryStats,
   DepartmentStats,
   ImageUpload,
+  EmployeeEdit,
 };
