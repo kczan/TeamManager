@@ -233,6 +233,17 @@ code {
   flex-direction: "column";
 }
 
+.sort-dropdown {
+  margin: 0 auto;
+  margin-top: 7rem;
+  margin-bottom: -4rem;
+  width: 20%;
+}
+
+.Dropdown-menu {
+  position: relative;
+}
+
 .about-container {
   margin: 4rem;
   padding: 1.5rem;
@@ -333,5 +344,9 @@ code {
   .Modal {
     min-width: 70vw;
     margin: 0 auto;
+  }
+
+  .sort-dropdown {
+    width: 70%;
   }
 }
