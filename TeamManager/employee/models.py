@@ -14,8 +14,9 @@ class EmployeeQuerySet(models.QuerySet):
     def search(self, query=None):
         qs = self
         if query is not None:
-            lookup = (Q(id=query))
-            qs = qs.filter(lookup).distinct()
+            or_lookup = (Q(first_name__icontains=query) | Q(
+                last_name__icontains=query))
+            qs = qs.filter(or_lookup).distinct()
         return qs
 
 
